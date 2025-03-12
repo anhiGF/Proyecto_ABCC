@@ -11,7 +11,7 @@ let Alumno=function (alumno) {
     this.carrera= alumno.carrera;
 };
 
-//
+//  ALTAS
 Alumno.create= function (nuevoA, res) {
     conexion.query("INSERT INTO alumnos SET ?",nuevoA,function (err,r) {
         if (err) {
@@ -38,7 +38,7 @@ Alumno.delete = function (nc,result) {
 };
 
 //cambios
-Alumno.update=function(alumno,result){
+Alumno.update=function(id,alumno,result){
     conexion.query("UPDATE alumnos SET nombre=?, primerap=?,segundoap=?, fecha_nac =?,semestre=?, carrera=? WWHERE num_control=?",[alumno.nombre,alumno.primerap,alumno.segundoap,alumno.fecha_nac,alumno.semestre,alumno.carrera,alumno.num_control],
         function (err,res) {
             if (err) {
@@ -64,7 +64,7 @@ Alumno.findById=function (nc,result) {
     });
 };
 
-Alumno.findAll=function (nc,result) {
+Alumno.findAll=function (result) {
     conexion.query("Select * from alumnos ",function (err,res) {
         if (err) {
             console.log('Error ',err);
