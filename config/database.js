@@ -1,11 +1,12 @@
 'use strict';
 const mysql = require('mysql');
 
-const conexion = mysql.createConnection({
-    host : 'localhost',
-    user: 'root',
-    password:'ARNIAK123',
-    database: 'db_express_2025'
+const connection = mysql.createConnection({
+  host: process.env.DB_HOST,
+  user: process.env.DB_USER,
+  password: process.env.DB_PASS,
+  database: process.env.DB_NAME,
+  port: process.env.DB_PORT
 });
 
 conexion.connect(function (err) {
