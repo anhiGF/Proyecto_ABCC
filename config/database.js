@@ -1,19 +1,11 @@
 'use strict';
-const mysql = require('mysql');
+const { Pool } = require('pg');
 
-const connection = mysql.createConnection({
-  host: process.env.DB_HOST,
-  user: process.env.DB_USER,
-  password: process.env.DB_PASS,
-  database: process.env.DB_NAME,
-  port: process.env.DB_PORT
+const conexion = new Pool({
+  connectionString: process.env.DATABASE_URL,
+  ssl: {
+    rejectUnauthorized: false, // Recomendado en Render
+  }
 });
 
-conexion.connect(function (err) {
-    if (err) {
-       throw err; 
-    }else{
-        console.log('conexion a db exitosa');
-    }
-});
-module.exports=conexion;
+module.exports = conexion;
